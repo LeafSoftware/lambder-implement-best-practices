@@ -22,7 +22,7 @@ Schedule the function with a new event. Rember that the cron expression is
 based on UTC.
 
     lambder events add \
-      --name StartInstances \
-      --function-name Lambder-start-instances \
+      --name ImplementBestPractices \
+      --function-name Lambder-implement-best-practices \
       --cron 'cron(0 6 ? * * *)'
 
