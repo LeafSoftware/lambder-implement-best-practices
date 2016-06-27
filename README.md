@@ -2,43 +2,27 @@
 
 implement-best-practices is an AWS Lambda function for use with Lambder.
 
-REQUIRES:
+## REQUIRES:
 * python-lambder
 
-## Getting Started
+This lambda function removes any ingress or egress rules in security groups that match the following:
 
-1) Test the sample lambda function
+* group_name is "default"
 
-    python lambda/implement-best-practices/implement-best-practices.py
+## Installation
 
-2) Deploy the sample Lambda function to AWS
+1. Clone this repo
+2. `cp example_lambder.json  lambder.json`
+3. Edit lambder.json to set your S3  bucket
+4. `lambder function deploy`
 
-    lambder functions deploy
+## Usage
 
-3) Invoke the sample Lambda function in AWS
+Schedule the function with a new event. Rember that the cron expression is
+based on UTC.
 
-    lambder functions invoke --input input/ping.json
+    lambder events add \
+      --name StartInstances \
+      --function-name Lambder-start-instances \
+      --cron 'cron(0 6 ? * * *)'
 
-4) Add useful code to lambda/implement-best-practices/implement-best-practices.py
-
-5) Add any permissions you need to access other AWS resources to iam/policy.json
-
-6) Update your lambda and permissions policy in one go
-
-    lambder functions deploy
-
-## Sharing your lambder function
-
-If you decide to share your lambder function, you want to be sure you don't share
-the name of your s3 bucket. We suggest you add `lambder.json` to your
-`.gitignore` so it won't be commited to your repo. Instead, copy it to
-`example_lambder.json` and remove any secrets before pushing to a public
-repository.
-
-## Using virtualenvwrapper
-
-Your Lambdas should be as small as possible to reduce spinup time. If you need
-to include extra python modules, use virtualenvwrapper.
-The deploy script will look for a site-packages directory in
-$WORKON_HOME/lambder-implement-best-practices and bundle those packages into the zip
-that it uploads to AWS Lambda.
