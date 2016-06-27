@@ -1,0 +1,7 @@
+{
+  "name": "implement-best-practices",
+  "s3_bucket": "mybucket",
+  "timeout": 3,
+  "memory": 128,
+  "description": ""
+}
